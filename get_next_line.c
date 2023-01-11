@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/11 15:15:03 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:30:06 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,29 @@
 
 char *get_next_line(int fd)
 {
+   
     
 }
 
 
 int main(void)
 {
-    int fd;
-    
+    int     fd;
+    char    *buf;
+    int     i;
+
+    i = 0;
     fd = open("file.txt", O_RDONLY);
-    printf("%d \n", fd);
+
+    while (buf[i] != '\n')
+    {
+        i++;
+    }
+
+    read(fd, buf, i - 1);
+
+    printf("%d\n", i);
+    printf("%s", buf);
+    
+    
 }
