@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/12 17:15:58 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:17:23 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ char *get_next_line(int fd)
     {
         if (buf[i] == NULL)
             break;
-        line[k] = buf[i];
-        k++;
-        i++;
+        line[k++] = buf[i++];
     }
     line[i++] = '\n';
     line[i++] = '\0';
