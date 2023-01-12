@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/12 15:38:43 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:15:58 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,17 @@ char *get_next_line(int fd)
     int     i = 0;
     int     j = 0;
     int     k = 0;
+    
     static int offset = 0;
 
     i = offset;
     printf("i = %d\n", i);
-    read(fd, buf, 1000);
-    line = (char *)malloc(sizeof(buf));
+    read(fd, buf, 100);
+    line = (char *)malloc(sizeof(char *));
     while (buf[i] != '\n')
     {
+        if (buf[i] == NULL)
+            break;
         line[k] = buf[i];
         k++;
         i++;
@@ -47,6 +50,7 @@ char *get_next_line(int fd)
     free(line);
     offset = i - 1;
     printf("\noffset: %d\n\n", offset);
+    // printf("Buff size: %d\n", sizeof(line));
     
 }
 
@@ -59,5 +63,7 @@ int main(void)
     get_next_line(fd);
     get_next_line(fd);
     get_next_line(fd);
-    
+    get_next_line(fd);
+    get_next_line(fd);
+
 }
