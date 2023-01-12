@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/12 17:17:23 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:20:02 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char *get_next_line(int fd)
     line = (char *)malloc(sizeof(char *));
     while (buf[i] != '\n')
     {
-        if (buf[i] == NULL)
+        if (buf[i] == '\0')
             break;
         line[k++] = buf[i++];
     }
