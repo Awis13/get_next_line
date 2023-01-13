@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/13 17:43:30 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:44:40 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ char *get_next_line(int fd)
     static int offset = 0;
     char *c;
     int i = 0;
-    while (i < 50)
+    while (read(fd, &c, 1))
     {
-        offset = read(fd, &c, 1);
         printf("%c", c);
         i++;
     }
