@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/13 16:29:54 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:43:30 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,18 @@
 
 char *get_next_line(int fd)
 {   
-    char    *buf;
-    char    *line;
-    int     i = 0;
-    int     j = 0;
-    int     k = 0;
-    int     len = 0;
-    
     static int offset = 0;
-
-    i = offset;
-    printf("i = %d\n", i);
-    read(fd, buf, 100);
-    while (buf[len])
-        len++;
-    line = (char *)malloc(sizeof(char *) * len);
-    while (buf[i] != '\n')
+    char *c;
+    int i = 0;
+    while (i < 50)
     {
-        if (buf[i] == '\0')
-            break;
-        line[k++] = buf[i++];
+        offset = read(fd, &c, 1);
+        printf("%c", c);
+        i++;
     }
-    line[i++] = '\n';
-    line[i++] = '\0';
-    offset = i - 1;
-    return(line);
+    
+    
+    
 }
 
 
@@ -51,11 +38,10 @@ int main(void)
     int     fd;
     
     fd = open("file.txt", O_RDONLY);
-    printf("%s", (get_next_line(fd)));
-    printf("%s", (get_next_line(fd)));
-    printf("%s", (get_next_line(fd)));
-    printf("%s", (get_next_line(fd)));
-    printf("%s", (get_next_line(fd)));
-    printf("%s", (get_next_line(fd)));
+    get_next_line(fd);
+    get_next_line(fd);
+    get_next_line(fd);
+    get_next_line(fd);
+    get_next_line(fd);
 
 }
