@@ -6,7 +6,7 @@
 /*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/19 17:23:18 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:29:11 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BUFF_SIZE 32
-
 char *get_next_line(int fd)
 {
-    static char buffer[BUFF_SIZE + 1];
+    static char buffer[BUFF_SIZE];
     static int offset;
     static int bytes_read;
     int i;
