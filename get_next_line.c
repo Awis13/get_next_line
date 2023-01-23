@@ -6,7 +6,7 @@
 /*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/22 12:59:28 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:07:55 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *get_next_line(int fd)
 	
     if (fd < 0)
         return NULL;
-    if (!(line = (char*)malloc(sizeof(char))))
+    if (!(line = calloc(sizeof(char), BUFF_SIZE)))
 		{
 			free(line);
 			return NULL;
@@ -58,7 +58,7 @@ char *get_next_line(int fd)
 		offset++;
 		if (line[i] == '\n')
 			break;
-			i++;
+		i++;
 	}
 	line[i] = '\n';
 	i++;
