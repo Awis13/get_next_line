@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
+/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/22 12:59:28 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:52:10 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ char *get_next_line(int fd)
     static int bytes_read;
     int i;
     char *line;
-	// char *c;
+	int len = 0;
 
-	line = NULL;
 	i = 0;
 	
     if (fd < 0)
@@ -56,13 +55,9 @@ char *get_next_line(int fd)
 		}
 		line[i] = buffer[offset];
 		offset++;
-		if (line[i] == '\n')
+		if (line[i++] == '\n')
 			break;
-			i++;
 	}
-	line[i] = '\n';
-	i++;
-	line[i] = '\0';
 	return (line);
 }
 
@@ -76,7 +71,7 @@ char *get_next_line(int fd)
 //     fd = open("file.txt", O_RDONLY);
 
 // 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
+// 	// printf("%s", get_next_line(fd));
 // 	// printf("%s", get_next_line(fd));
 // 	// printf("%s", get_next_line(fd));
 // 	// get_next_line(fd);
