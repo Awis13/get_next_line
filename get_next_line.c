@@ -6,7 +6,11 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/23 16:01:42 by nipostni         ###   ########.fr       */
+=======
+/*   Updated: 2023/01/23 17:07:55 by nipostni         ###   ########.fr       */
+>>>>>>> 53c36230b5149ead33676101d91aeba7394cbb66
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +32,7 @@ char *get_next_line(int fd)
 	
     if (fd < 0)
         return NULL;
-    if (!(line = (char*)malloc(sizeof(char))))
+    if (!(line = calloc(sizeof(char), BUFF_SIZE)))
 		{
 			free(line);
 			return NULL;
@@ -54,8 +58,13 @@ char *get_next_line(int fd)
 		}
 		line[i] = buffer[offset];
 		offset++;
+<<<<<<< HEAD
 		if (buffer[offset] == '\n')
 			return(line);
+=======
+		if (line[i] == '\n')
+			break;
+>>>>>>> 53c36230b5149ead33676101d91aeba7394cbb66
 		i++;
 	}
 }
