@@ -6,7 +6,7 @@
 /*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/24 15:29:29 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/24 15:31:08 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char *get_next_line(int fd)
     static int bytes_read;
     int i;
     char *line;
-	// char *c;
 
 	line = NULL;
 	i = 0;
