@@ -3,66 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/24 15:31:08 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/24 22:58:28 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 char *get_next_line(int fd)
 {
-    static char buffer[BUFF_SIZE];
-    static int offset;
-    static int bytes_read;
-    int i;
-    char *line;
+    static char *line;
+    char *to_free;
+    char *temp;
+    int bytes_read;
+    char buffer[BUFFER_SIZE + 1];
 
-	line = NULL;
-	i = 0;
-	
-    if (fd < 0)
-        return NULL;
-    if (!(line = ft_calloc(sizeof(char), BUFF_SIZE)))
-		{
-			free(line);
-			return NULL;
-		}
-
-	while (42)
-	{
-		if (offset == bytes_read)
-		{
-			bytes_read = read(fd, buffer, BUFF_SIZE);
-			offset = 0;
-		}
-		if (bytes_read == -1)
-		{
-			free(line);
-			return NULL;
-		}
-			
-		if (bytes_read == 0)
-		{
-			free(line);
-			return NULL;
-		}
-		line[i] = buffer[offset];
-		offset++;
-		if (line[i] == '\n')
-			break;
-		i++;
-	}
-	line[i] = '\n';
-	i++;
-	line[i] = '\0';
-	return (line);
+    if (fd < 0 || BUFFER_SIZE <= 0)
+    {
+        if (line)
+            free(line);
+        return (NULL);
+    }
+    while (!ft_strchr(line, '\n') && (bytes_read = read(fd, buffer, BUFFER_SIZE)))
+    {
+        if (bytes_read == -1)
+        {
+            free(line);
+            return (NULL);
+        }
+        buffer[bytes_read] = '\0';
+        if (!line)
+            temp = ft_strdup(buffer);
+        else
+            temp = ft_strjoin(line, buffer);
+        line = temp;
+    }
+    bytes_read = ft_strchr(line, '\n') - line;
+    temp = ft_substr(line, 0, bytes_read + 1);
+    to_free = line;
+    line = ft_substr(line, bytes_read + 1, ft_strlen(line) - bytes_read);
+    free(to_free);
+    return (temp);
 }
 
 
