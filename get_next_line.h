@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
+/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 23:15:19 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/24 23:15:20 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/25 14:00:27 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 32
 # endif
 
 size_t	ft_strlen(const char *s);

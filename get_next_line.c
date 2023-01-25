@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
+/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/24 22:58:28 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:59:13 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 char *get_next_line(int fd)
 {
@@ -51,19 +52,19 @@ char *get_next_line(int fd)
 
 
 
-// int main(void)
-// {
-//     int     fd;
+int main(void)
+{
+    int     fd;
     
-//     fd = open("file.txt", O_RDONLY);
+    fd = open("file.txt", O_RDONLY);
 
-// 	printf("%s", get_next_line(fd));
-// 	printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// printf("%s", get_next_line(fd));
-// 	// get_next_line(fd);
-// 	// get_next_line(fd);
-// 	// get_next_line(fd);
-// 	// get_next_line(fd);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	// printf("%s", get_next_line(fd));
+	// printf("%s", get_next_line(fd));
+	// get_next_line(fd);
+	// get_next_line(fd);
+	// get_next_line(fd);
+	// get_next_line(fd);
 
-// }
+}
