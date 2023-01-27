@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/24 23:15:19 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/25 14:00:27 by nipostni         ###   ########.fr       */
+/*   Created: 2023/01/26 15:21:59 by nipostni          #+#    #+#             */
+/*   Updated: 2023/01/26 17:46:18 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
 # endif
 
-size_t	ft_strlen(const char *s);
-char	*get_next_line(int fd);
+int		ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlcpy(char *dst, const char *src, size_t n);
-void *ft_memcpy(void *dest, const void *src, size_t n);
+
+char	*get_next_line(int fd);
 
 #endif

@@ -3,68 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <nipostni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 13:44:35 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/25 13:59:13 by nipostni         ###   ########.fr       */
+/*   Created: 2023/01/26 15:23:54 by nipostni          #+#    #+#             */
+/*   Updated: 2023/01/26 17:46:08 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-char *get_next_line(int fd)
+static char	*get_one_line(int fd, char *stash)
 {
-    static char *line;
-    char *to_free;
-    char *temp;
-    int bytes_read;
-    char buffer[BUFFER_SIZE + 1];
+	char				buf[BUFFER_SIZE + 1];
+	char				*temp;
+	int					bytes_read;
 
-    if (fd < 0 || BUFFER_SIZE <= 0)
-    {
-        if (line)
-            free(line);
-        return (NULL);
-    }
-    while (!ft_strchr(line, '\n') && (bytes_read = read(fd, buffer, BUFFER_SIZE)))
-    {
-        if (bytes_read == -1)
-        {
-            free(line);
-            return (NULL);
-        }
-        buffer[bytes_read] = '\0';
-        if (!line)
-            temp = ft_strdup(buffer);
-        else
-            temp = ft_strjoin(line, buffer);
-        line = temp;
-    }
-    bytes_read = ft_strchr(line, '\n') - line;
-    temp = ft_substr(line, 0, bytes_read + 1);
-    to_free = line;
-    line = ft_substr(line, bytes_read + 1, ft_strlen(line) - bytes_read);
-    free(to_free);
-    return (temp);
+	bytes_read = 1;
+	while (42)
+	{
+		bytes_read = read(fd, buf, BUFFER_SIZE);
+		if (bytes_read < 0)
+		{
+			if (stash)
+				free(stash);
+			return (NULL);
+		}
+		buf[bytes_read] = '\0';
+		if (!stash)
+			temp = ft_strdup(buf);
+		else
+			temp = ft_strjoin(stash, buf);
+		stash = temp;
+		if (ft_strchr(stash, '\n') || bytes_read == 0)
+			break ;
+	}
+	return (stash);
 }
 
-
-
-
-int main(void)
+char	*get_next_line(int fd)
 {
-    int     fd;
-    
-    fd = open("file.txt", O_RDONLY);
+	static char			*stash;
+	char				*temp;
+	char				*line;
+	int					len;
 
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// printf("%s", get_next_line(fd));
-	// get_next_line(fd);
-	// get_next_line(fd);
-	// get_next_line(fd);
-	// get_next_line(fd);
-
+	if (fd < 0 || fd > 1023)
+	{
+		if (stash)
+			free(stash);
+		return (NULL);
+	}
+	stash = get_one_line(fd, stash);
+	if (!stash)
+		return (NULL);
+	len = ft_strchr(stash, '\n') - stash;
+	line = ft_substr(stash, 0, len + 1);
+	temp = stash;
+	stash = ft_substr(stash, len + 1, (ft_strlen(stash) - len));
+	free(temp);
+	return (line);
 }
+
+// int main()
+// {
+// 	int fd;
+// 	char *line;
+
+// 	fd = open("file.txt", O_RDONLY);
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
+// 	return 0;
+// }
