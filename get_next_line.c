@@ -1,42 +1,30 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/26 15:23:54 by nipostni          #+#    #+#             */
-/*   Updated: 2023/01/26 17:46:08 by nipostni         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 static char	*get_one_line(int fd, char *stash)
 {
-	char				buf[BUFFER_SIZE + 1];
-	char				*temp;
+	char				*buf;
 	int					bytes_read;
 
-	bytes_read = 1;
+	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	while (42)
 	{
 		bytes_read = read(fd, buf, BUFFER_SIZE);
 		if (bytes_read < 0)
 		{
+			free(buf);
 			if (stash)
 				free(stash);
 			return (NULL);
 		}
 		buf[bytes_read] = '\0';
 		if (!stash)
-			temp = ft_strdup(buf);
+			stash = ft_strdup(buf);
 		else
-			temp = ft_strjoin(stash, buf);
-		stash = temp;
+			stash = ft_strjoin(stash, buf);
 		if (ft_strchr(stash, '\n') || bytes_read == 0)
 			break ;
 	}
+	free(buf);
 	return (stash);
 }
 
