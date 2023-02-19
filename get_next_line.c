@@ -6,7 +6,7 @@
 /*   By: nipostni <awis@me.com>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 00:04:02 by nipostni          #+#    #+#             */
-/*   Updated: 2023/02/10 00:04:04 by nipostni         ###   ########.fr       */
+/*   Updated: 2023/02/19 20:10:43 by nipostni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*get_next_line(int fd)
 	char				*line;
 	int					len;
 
-	if (fd < 0 || fd > 1023)
+	if (fd < 0 || fd > FD_SETSIZE)
 	{
 		if (stash)
 			free(stash);
