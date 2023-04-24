@@ -44,3 +44,6 @@ int main()
     return 0;
 }
 ```
+This code snippet will read the first three lines from a file called file.txt.
+
+🙌 Happy coding! 💻
