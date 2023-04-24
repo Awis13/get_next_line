@@ -15,19 +15,19 @@ Before diving into the code, make sure you have a C compiler installed on your m
 Compile the Code
 To compile the code, use the following command:
 
-'''bash
+'''sh
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=<your_buffer_size> get_next_line.c get_next_line_utils.c
 '''
 
 Replace <your_buffer_size> with the desired buffer size. For example, you can use 42 as the buffer size:
 
-'''bash
+'''sh
 gcc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
 '''
 
 This command will generate an executable file called a.out. To run it, simply use:
 
-'''bash
+'''sh
 ./a.out
 '''
 
